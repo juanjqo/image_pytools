@@ -87,21 +87,21 @@ def prepare_dataset(origin_folder, destination_folder):
 
     i = 0
     os.chdir(data_folder)
+    #dict_example = []
     for file in glob.glob("*.jpg"):
         i = i + 1
         im = Image.open(file)
-        m = re.search('(.+?).jpg', file)
-        found = m.group(1)
-        ch = len(found)-1
-        
+        #m = re.search('(.+?).jpg', file)
+        #found = m.group(1)
+        #ch = len(found)-1
+        #dict_example.append(found)
         im.save(destination_folder_rgb + "/" + "rgb_" + str(i)+".jpg")
+        os.remove(data_folder + '/' + file)
         im = Image.open(file[:-3] + "png")
         im.save(destination_folder_msk + "/" + "rgb_" + str(i) + "_mask.png")
+        os.remove(data_folder + '/' + file[:-3] + "png")
 
 
-
-        #print(len(found))
-    #im.save(destination_folder_rgb + file[:-3] + "jpg")
 
 
 
